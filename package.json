@@ -1,0 +1,10 @@
+{
+  "name": "web-scraper",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "request": "^2.69.0",
+    "underscore": "^1.8.3"
+  }
+}
