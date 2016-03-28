@@ -1,17 +1,27 @@
+#!/usr/bin/env node
+
 'use strict';
 
-const scraper = require('./page-scraper');
+const fs = require('fs');
+const argv = require('yargs').argv;
+const PageUploader = require('./page-uploader');
+const uploader = new PageUploader();
+const ParseCSV = require('./parse-csv');
 
-scraper.scrape(URL).then(body => {
+if (argv.help) {
 
-    converter.convert(body).then(data => {
-        console.log(data);
-    }).catch(err => {
-       console.log(err);
+    console.log('user requested help');
+
+} else if (argv.input !== '') {
+
+    fs.createReadStream(argv.input).pipe(new ParseCSV()).on('data', (buffer) => {
+
+        uploader.upload(JSON.parse(buffer.toString())).then(() => {
+            console.log("Upload complete!");
+        }).catch(err => {
+            console.log(err);
+        });
+
     });
 
-}).catch(err => {
-
-    console.log(err);
-
-});
+}

@@ -1,0 +1,9 @@
+{
+  "esversion": 6,
+  "esnext":true,
+  "strict": true,
+  "varstmt": true,
+  "node": true,
+  "quotmark": "single",
+  "undef": false
+}
